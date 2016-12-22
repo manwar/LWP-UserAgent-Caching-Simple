@@ -1,25 +1,8 @@
-use LWP::UserAgent::Caching::Simple;
-
-my $ua = LWP::UserAgent::Caching::Simple->new( );
+use LWP::UserAgent::Caching::Simple qw/get_from_json/;
 
 # $HTTP::Caching::DEBUG = 1;
 
-my $method  = shift;
-my $url     = shift;
+my $data = get_from_json(shift);
 
-if ($method =~ /^GET$/i ) {
-print "\n#####\n";
-print "\nGETTING\n";
-print "\n#####\n";
-
-
-    my $resp = $ua->get($url);
-    print $resp->headers->as_string;
-    exit
-}
-
-my $http_request = HTTP::Request->new( $method, $url );
-
-my $http_response = $ua->request($http_request);
-
-print $http_response->headers->as_string;
+use Data::Dumper;
+print Dumper $data;
