@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use LWP::UserAgent::Caching::Simple qw/get_from_json/;
 
 # $HTTP::Caching::DEBUG = 1;
