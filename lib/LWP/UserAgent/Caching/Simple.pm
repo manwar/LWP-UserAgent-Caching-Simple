@@ -124,9 +124,7 @@ handle more complex requests as well, using
 
 which will give a full C<HTTP::Response> object back. The UserAgent is a full
 subclass of the standard L<LWP::UserAgent>, and one can still change the setting
-of that, like e.g. the C<< $ua->agent('SecretAgent/007') >>. But if you need
-more control over your cache, you definitely need to fall back to
-L<LWP::UserAgent::Caching>
+of that, like e.g. the C<< $ua->agent('SecretAgent/007') >>.
 
 =head1 AUTHOR
 
