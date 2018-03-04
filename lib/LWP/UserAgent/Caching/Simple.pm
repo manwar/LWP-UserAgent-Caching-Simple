@@ -16,7 +16,6 @@ use strict;
 use warnings;
 
 use parent 'LWP::UserAgent::Caching';
-use HTTP::Request;
 
 use CHI;
 use JSON;
