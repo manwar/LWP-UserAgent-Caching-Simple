@@ -78,11 +78,7 @@ sub new {
 }
 
 sub get_from_json {
-    my $rqst = HTTP::Request->new(
-        GET => $_[0],
-        [ Accept => 'application/json' ]
-    );
-    my $resp = _default_useragent()->request($rqst);
+    my $resp = _default_useragent()->get(@_, Accept => 'application/json');
     return decode_json($resp->decoded_content()) if $resp->is_success;
     warn "HTTP Status message ${\$resp->code} [${\$resp->message}] GET $_[0]\n";
     return
