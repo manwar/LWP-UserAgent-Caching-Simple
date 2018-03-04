@@ -6,11 +6,11 @@ LWP::UserAgent::Caching::Simple - The first 'hard thing' made easy --- simple
 
 =head1 VERSION
 
-Version 0.04
+Version 0.06
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use strict;
 use warnings;
