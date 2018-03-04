@@ -38,7 +38,11 @@ and maybe even something quick:
     
     use LWP::UserAgent::Caching::Simple qw(get_from_json);
     
-    my $hashref = get_from_json ( 'http://example.com/cached?' );
+    my $hashref = get_from_json (
+        'http://example.com/cached?',
+        'Cache-Control' => 'max-stale',    # without delta-seconds, unlimited
+        'Cache-Control' => 'no-transform', # something not implemented
+    );
 
 
 =head1 DESCRIPTION
@@ -78,11 +82,7 @@ sub new {
 }
 
 sub get_from_json {
-    my $rqst = HTTP::Request->new(
-        GET => $_[0],
-        [ Accept => 'application/json' ]
-    );
-    my $resp = _default_useragent()->request($rqst);
+    my $resp = _default_useragent()->get(@_, Accept => 'application/json');
     return decode_json($resp->decoded_content()) if $resp->is_success;
     warn "HTTP Status message ${\$resp->code} [${\$resp->message}] GET $_[0]\n";
     return
@@ -108,17 +108,13 @@ the following object methods:
 
 =back
 
-And to make life realy simple, when imported, one function
+=head1 EXPORT_OK
 
-=over
+=head2 get_from_json
 
-=item get_from_json
-
-this will simply make a GET request to a server, with the C<Accept> Header set
+This will simply make a GET request to a server, with the C<Accept> Header set
 to C<application/json>. On succes, it will turn the returned json (as requested)
 into a perl data structure. Otherwise it will be C<undef> and print a warning.
-
-=back
 
 =head1 CAVEATS
 
