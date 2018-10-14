@@ -112,7 +112,7 @@ the following object methods:
 =head2 get_from_json
 
 This will simply make a GET request to a server, with the C<Accept> Header set
-to C<application/json>. On succes, it will turn the returned json (as requested)
+to C<application/json>. On success, it will turn the returned json (as requested)
 into a perl data structure. Otherwise it will be C<undef> and print a warning.
 
 =head1 CAVEATS
